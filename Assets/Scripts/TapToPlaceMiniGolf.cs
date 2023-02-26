@@ -8,7 +8,7 @@ using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch;
 [RequireComponent(typeof(ARRaycastManager), typeof(ARPlaneManager))]
 public class TapToPlaceMiniGolf : MonoBehaviour{
     [SerializeField]
-    private GameObject miniGolfPrefab;
+    private List<GameObject> miniGolfPrefabs = new List<GameObject>();
     private ARRaycastManager aRRaycastManager;
     private ARPlaneManager aRPlaneManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
@@ -19,20 +19,19 @@ public class TapToPlaceMiniGolf : MonoBehaviour{
     private void OnEnable(){
         EnhancedTouch.TouchSimulation.Enable();
         EnhancedTouch.EnhancedTouchSupport.Enable();
-        EnhancedTouch.Touch.onFingerDown += FingerDown;
+        EnhancedTouch.Touch.onFingerUp += FingerDown;
     }
 
     private void OnDisable(){
         EnhancedTouch.TouchSimulation.Disable();
         EnhancedTouch.EnhancedTouchSupport.Disable();
-        EnhancedTouch.Touch.onFingerDown -= FingerDown;
+        EnhancedTouch.Touch.onFingerUp -= FingerDown;
     }
     private void FingerDown(EnhancedTouch.Finger finger){
-        if(finger.index != 0){ return; }
-        if(aRRaycastManager.Raycast(finger.currentTouch.screenPosition, hits, TrackableType.PlaneWithinPolygon)){
+        if(finger.index != 0){ return; } else if(aRRaycastManager.Raycast(finger.currentTouch.screenPosition, hits, TrackableType.PlaneWithinPolygon)){
             foreach(ARRaycastHit hit in hits){
                 Pose pose = hit.pose;
-                GameObject obj = Instantiate(miniGolfPrefab, pose.position, pose.rotation);
+                GameObject obj = Instantiate(miniGolfPrefabs[0], pose.position, pose.rotation);
                 if(aRPlaneManager.GetPlane(hit.trackableId).alignment == PlaneAlignment.HorizontalUp){
                     Vector3 position = obj.transform.position;
                     Vector3 cameraPosition = Camera.main.transform.position;
@@ -41,10 +40,9 @@ public class TapToPlaceMiniGolf : MonoBehaviour{
 
                     Vector3 direction = cameraPosition - position;
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
-                    obj.transform.rotation = targetRotation;
+                    //obj.transform.rotation = targetRotation;
                 }
             }
         }
     }
-
 }
