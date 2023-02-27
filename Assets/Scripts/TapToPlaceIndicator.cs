@@ -8,6 +8,8 @@ using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch;
 public class TapToPlaceIndicator : MonoBehaviour{
     [SerializeField]
     private List<GameObject> objectsToPlace = new List<GameObject>();
+    [SerializeField]
+    private GameObject parentObject;
     public GameObject placementIndicator;
     private ARRaycastManager aRRaycastManager;
     private ARPlaneManager aRPlaneManager;
@@ -35,6 +37,7 @@ public class TapToPlaceIndicator : MonoBehaviour{
 
     private void PlaceObject(){
         placedObject = Instantiate(objectsToPlace[0], placementPose.position, placementPose.rotation);
+        placedObject.transform.parent = parentObject.transform;
     }
 
     private void UpdatePlacementIndicator(){

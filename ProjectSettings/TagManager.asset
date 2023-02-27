@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - HoleOne
+  - HoleTwo
+  - HoleThree
+  - HoleOneArea
+  - HoleTwoArea
+  - HoleThreeArea
+  - Joystick
   layers:
   - Default
   - TransparentFX
