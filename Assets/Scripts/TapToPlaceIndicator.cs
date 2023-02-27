@@ -16,7 +16,8 @@ public class TapToPlaceIndicator : MonoBehaviour{
     private Pose placementPose;
     private bool placementPoseIsValid = false;
     private bool placementState = false;
-    private GameObject placedObject;
+    public GameObject placedObject;
+    public int level = 0;
 
     void Start(){
         aRRaycastManager = GetComponent<ARRaycastManager>();
@@ -36,7 +37,7 @@ public class TapToPlaceIndicator : MonoBehaviour{
     }
 
     private void PlaceObject(){
-        placedObject = Instantiate(objectsToPlace[0], placementPose.position, placementPose.rotation);
+        placedObject = Instantiate(objectsToPlace[level], placementPose.position, placementPose.rotation);
         placedObject.transform.parent = parentObject.transform;
     }
 
@@ -44,8 +45,7 @@ public class TapToPlaceIndicator : MonoBehaviour{
         if (placementPoseIsValid){
             placementIndicator.SetActive(true);
             placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
-        }
-        else{
+        }else{
             placementIndicator.SetActive(false);
         }
     }
@@ -69,6 +69,5 @@ public class TapToPlaceIndicator : MonoBehaviour{
         placementState = false;
         Destroy(placedObject);
         placementIndicator.SetActive(true);
-
     }
 }

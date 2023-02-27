@@ -11,6 +11,8 @@ TagManager:
   - HoleTwoArea
   - HoleThreeArea
   - Joystick
+  - AR
+  - Interface
   layers:
   - Default
   - TransparentFX
