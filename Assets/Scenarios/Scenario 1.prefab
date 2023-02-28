@@ -4077,9 +4077,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 2353581514562909439}
     m_Modifications:
     - target: {fileID: 892414658, guid: 51a1906f35b6bd8498fcb708f15df5e4, type: 3}
+      propertyPath: particles
+      value: 
+      objectReference: {fileID: 4777395382941419140}
+    - target: {fileID: 892414658, guid: 51a1906f35b6bd8498fcb708f15df5e4, type: 3}
       propertyPath: fixedJoystick
       value: 
       objectReference: {fileID: 3085251884837042749}
+    - target: {fileID: 1462454669620155889, guid: 51a1906f35b6bd8498fcb708f15df5e4,
+        type: 3}
+      propertyPath: m_Name
+      value: SomeParticles
+      objectReference: {fileID: 0}
     - target: {fileID: 8132110292447712705, guid: 51a1906f35b6bd8498fcb708f15df5e4,
         type: 3}
       propertyPath: m_RootOrder
@@ -4142,6 +4151,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51a1906f35b6bd8498fcb708f15df5e4, type: 3}
+--- !u!198 &4777395382941419140 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9205515515843818439, guid: 51a1906f35b6bd8498fcb708f15df5e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 4434981714932479299}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5572983978883014786 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8132110292447712705, guid: 51a1906f35b6bd8498fcb708f15df5e4,
